@@ -9,7 +9,7 @@ const Accordion = (props: TitlePropsType) => {
 
     return <div>
         <AccordionTitle title={props.title} collapsed={props.collapsed}/>
-        { props.collapsed === false && <AccordionBody/> }
+        { !props.collapsed && <AccordionBody/> }
     </div>
 
     // return props.collapsed ? <AccordionTitle title={props.title} collapsed={props.collapsed}/> : <>
