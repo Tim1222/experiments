@@ -2,34 +2,21 @@ import React from "react";
 
 type TitlePropsType = {
     title: string
-    collapsed: boolean
+    collapsed?: boolean
+    onChange: () => void
 }
 
 const Accordion = (props: TitlePropsType) => {
 
     return <div>
-        <AccordionTitle title={props.title} collapsed={props.collapsed}/>
-        { !props.collapsed && <AccordionBody/> }
+        <AccordionTitle title={props.title}   onChange={props.onChange}/>
+        {!props.collapsed && <AccordionBody/>}
     </div>
 
-    // return props.collapsed ? <AccordionTitle title={props.title} collapsed={props.collapsed}/> : <>
-    //     <AccordionTitle title={props.title} collapsed={props.collapsed}/>
-    //     <AccordionBody/>
-    // </>
 
-    // if(props.collapsed === true) {
-    //     return   <AccordionTitle title={props.title} collapsed={props.collapsed}/>
-    // }
-    //
-    // return (
-    //     <>
-    //         <AccordionTitle title={props.title} collapsed={props.collapsed}/>
-    //         <AccordionBody/>
-    //     </>
-    // )
 }
 const AccordionTitle = (props: TitlePropsType) => {
-    return <h1>{props.title}</h1>
+    return <h1 onClick={props.onChange}>{props.title}</h1>
 
 }
 
