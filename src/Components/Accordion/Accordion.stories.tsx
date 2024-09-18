@@ -1,33 +1,48 @@
-import React from "react";
+import type {Meta} from '@storybook/react';
+import Accordion from './Accordion';
+import React, {useState} from "react";
+import {StoryObj} from "@storybook/react";
+import {action} from '@storybook/addon-actions'
 
-type TitlePropsType = {
-    title: string
-    collapsed?: boolean
-    onChange: () => void
+
+// const meta: Meta<typeof Accordion> = {
+//     component: Accordion
+// }
+// export default meta;
+
+export default {
+    title: "Accordion",
+    component: Accordion
 }
 
-const Accordion = (props: TitlePropsType) => {
-
-    return <div>
-        <AccordionTitle title={props.title}   onChange={props.onChange}/>
-        {!props.collapsed && <AccordionBody/>}
-    </div>
-
-
-}
-const AccordionTitle = (props: TitlePropsType) => {
-    return <h1 onClick={props.onChange}>{props.title}</h1>
-
+type Story = StoryObj<typeof Accordion>
+export const FirsStory: Story = {
+    args: {
+        title: 'Hello',
+        collapsed: true,
+    },
 }
 
-const AccordionBody = () => {
-    return (
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    )
+const onChangeHandler = action('onChange')
+
+export const CollapsedAccordion = () => {
+    return <Accordion title={'Collapsed Accordion'}
+                      onChange={onChangeHandler}
+                      collapsed={true}/>
 }
 
-export default Accordion;
+export const OpenAccordion = () => {
+    return <Accordion title={'Open Accordion'}
+                      onChange={() => {
+                      }}
+                      collapsed={false}/>
+}
+
+export const DemoAccordion = () => {
+    const [collapsed, setCollapsed] = useState(false)
+    return <Accordion title={'Accordion'}
+                      collapsed={collapsed}
+                      onChange={() => {
+                          setCollapsed(!collapsed)
+                      }}/>
+}
