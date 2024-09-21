@@ -1,4 +1,6 @@
 import {ChangeEvent, useRef, useState} from "react";
+import {action} from "@storybook/addon-actions";
+import {string} from "prop-types";
 
 export default {
     title: 'input',
@@ -29,7 +31,43 @@ export const GetValueOfUncontrolledInputByButtonPress = () => {
 
     return <><input ref={inputRef}/>
         <button onClick={save}>save</button>
-         actual value: {value}</>
+        actual value: {value}</>
 }
 
+export const ControlledInput = () => {
 
+
+    let [parentValue, setParentValue] = useState('')
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.value)
+    }
+
+    return <input value={parentValue} onChange={onChange}/>
+}
+
+export const ControlletCheckbox = () => {
+    let [parentValue, setParentValue] = useState(true)
+
+
+
+    const onChange = (e:ChangeEvent<HTMLInputElement>) =>{
+       setParentValue(e.currentTarget.checked)
+    }
+
+    return <input type="checkbox" checked={ parentValue} onChange={ onChange }/>
+}
+
+export const ControlledSelect = () => {
+    let [parentValue, setParentValue] = useState<string | undefined>(undefined)
+
+    const onChange = (e:ChangeEvent<HTMLSelectElement>) =>{
+       setParentValue(e.currentTarget.value)
+    }
+
+    return <select value={parentValue} onChange={ onChange }>
+        <option>none</option>
+        <option value={"1"}>BTS</option>
+        <option value={"2"}>Kiev</option>
+        <option value={"3"}>Zitomir</option>
+    </select>
+}
