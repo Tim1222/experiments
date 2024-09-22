@@ -5,6 +5,7 @@ import Rating, {RatingValueType} from "./Components/Rating/Rating";
 import OnOff from "./Components/OnOff/OnOff";
 import UnControlledAccordion from "./Components/UnControlledAccordion/UnControlledAccordion";
 import UnControlledRating from "./Components/UnControlledRating/UnControlledRating";
+import {action} from "@storybook/addon-actions";
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
             {/*<UnControlledRating />*/}
             {/*<UnControlledRating />*/}
             <OnOff on={switchOn} onChange={(on) =>{setSwitchOn(on)}}/>
+            {/*<Accordion titleValue={'new'} collapsed={true} onChange={action('accordion mode change event fired')} items={['Tima', 'Valera', 'Viktor']}/>*/}
+
             {/*<OnOff/>*/}
             {/*<OnOff/>*/}
         </>
